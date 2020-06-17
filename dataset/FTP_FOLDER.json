@@ -1,0 +1,20 @@
+{
+	"name": "FTP_FOLDER",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FTP_FOLDER",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FtpServerLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
