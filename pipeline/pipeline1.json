@@ -19,7 +19,9 @@
 						"referenceName": "FTP_FOLDER",
 						"type": "DatasetReference"
 					},
-					"fieldList": [],
+					"fieldList": [
+						"childItems"
+					],
 					"storeSettings": {
 						"type": "FtpReadSettings",
 						"useBinaryTransfer": true
