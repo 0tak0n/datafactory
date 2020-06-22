@@ -155,7 +155,13 @@
 							"outputs": [
 								{
 									"referenceName": "BLOB_STORAGE_PIZZA",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"name": {
+											"value": "@activity('Get File Metadata').output.itemName",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
