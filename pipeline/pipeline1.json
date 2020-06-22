@@ -51,7 +51,7 @@
 					},
 					"activities": [
 						{
-							"name": "Get Metadata1",
+							"name": "Get File Metadata",
 							"type": "GetMetadata",
 							"dependsOn": [],
 							"policy": {
@@ -79,12 +79,59 @@
 								],
 								"storeSettings": {
 									"type": "FtpReadSettings",
+									"recursive": true,
 									"useBinaryTransfer": true
 								},
 								"formatSettings": {
 									"type": "DelimitedTextReadSettings"
 								}
 							}
+						},
+						{
+							"name": "Copy to  blob",
+							"type": "Copy",
+							"dependsOn": [
+								{
+									"activity": "Get File Metadata",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "FtpReadSettings",
+										"recursive": true,
+										"useBinaryTransfer": true
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "FTP_FILE",
+									"type": "DatasetReference",
+									"parameters": {
+										"filename": {
+											"value": "@activity('Get File Metadata').output.name",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					]
 				}
