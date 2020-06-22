@@ -146,7 +146,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"filename": {
-											"value": "@activity('Get File Metadata').output.name",
+											"value": "@activity('Get File Metadata').output.itemName",
 											"type": "Expression"
 										}
 									}
