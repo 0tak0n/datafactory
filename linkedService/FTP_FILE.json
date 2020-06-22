@@ -1,0 +1,14 @@
+{
+	"name": "FTP_FILE",
+	"properties": {
+		"annotations": [],
+		"type": "FtpServer",
+		"typeProperties": {
+			"host": "ftp.at0mic.duckdns.org",
+			"port": 21,
+			"enableSsl": true,
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
