@@ -5,11 +5,17 @@
 			"referenceName": "BLOB_STOAGE",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"name": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "@dataset().name",
 				"container": "blob1"
 			},
 			"columnDelimiter": ",",
