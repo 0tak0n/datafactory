@@ -6,8 +6,8 @@
 		"typeProperties": {
 			"host": "ftp.at0mic.duckdns.org",
 			"port": 21,
-			"enableSsl": true,
-			"enableServerCertificateValidation": true,
+			"enableSsl": false,
+			"enableServerCertificateValidation": false,
 			"authenticationType": "Anonymous"
 		}
 	}
