@@ -63,7 +63,27 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"fieldList": []
+								"dataset": {
+									"referenceName": "FTP_FILE",
+									"type": "DatasetReference",
+									"parameters": {
+										"filename": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
+								},
+								"fieldList": [
+									"itemName",
+									"lastModified"
+								],
+								"storeSettings": {
+									"type": "FtpReadSettings",
+									"useBinaryTransfer": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
 							}
 						}
 					]
