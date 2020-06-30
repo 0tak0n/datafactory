@@ -9,8 +9,7 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "FtpServerLocation",
-				"fileName": "*.csv"
+				"type": "FtpServerLocation"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
