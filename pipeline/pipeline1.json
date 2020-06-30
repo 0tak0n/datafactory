@@ -20,7 +20,7 @@
 						"type": "DatasetReference"
 					},
 					"fieldList": [
-						"columnCount"
+						"childItems"
 					],
 					"storeSettings": {
 						"type": "FtpReadSettings",
@@ -37,7 +37,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Filter1",
+						"activity": "FilterCSV",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -230,7 +230,7 @@
 				}
 			},
 			{
-				"name": "Filter1",
+				"name": "FilterCSV",
 				"type": "Filter",
 				"dependsOn": [
 					{
@@ -243,11 +243,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get FTP file list').output",
+						"value": "@activity('Get FTP file list').output.childItems",
 						"type": "Expression"
 					},
 					"condition": {
-						"value": "@contains(item().filename,'.csv')",
+						"value": "@endswith(item(),'.csv')",
 						"type": "Expression"
 					}
 				}
