@@ -46,7 +46,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get FTP file list').output.childItems",
+						"value": "@activity('FilterCSV').output.value",
 						"type": "Expression"
 					},
 					"activities": [
@@ -166,8 +166,8 @@
 							]
 						},
 						{
-							"name": "Copy to SQL",
-							"type": "Copy",
+							"name": "TransformSinkSQL",
+							"type": "ExecuteDataFlow",
 							"dependsOn": [
 								{
 									"activity": "Get File Metadata",
@@ -185,46 +185,20 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "DelimitedTextSource",
-									"storeSettings": {
-										"type": "FtpReadSettings",
-										"recursive": true,
-										"useBinaryTransfer": true
-									},
-									"formatSettings": {
-										"type": "DelimitedTextReadSettings"
+								"dataflow": {
+									"referenceName": "dataflow1",
+									"type": "DataFlowReference",
+									"datasetParameters": {
+										"source1": {
+											"name": "@activity('Get File Metadata').output.itemName"
+										}
 									}
 								},
-								"sink": {
-									"type": "AzureSqlSink",
-									"tableOption": "autoCreate"
-								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
+								"compute": {
+									"coreCount": 8,
+									"computeType": "General"
 								}
-							},
-							"inputs": [
-								{
-									"referenceName": "FTP_FILE",
-									"type": "DatasetReference",
-									"parameters": {
-										"filename": "@activity('Get File Metadata').output.itemName"
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "AzureSqlTable1",
-									"type": "DatasetReference"
-								}
-							]
+							}
 						}
 					]
 				}
@@ -247,7 +221,7 @@
 						"type": "Expression"
 					},
 					"condition": {
-						"value": "@endswith(item(),'.csv')",
+						"value": "@endswith(item().name,'.csv')",
 						"type": "Expression"
 					}
 				}
